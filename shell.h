@@ -15,6 +15,8 @@ void readCommand(char *input, int is_interactive);
 void executeCommand(char *input);
 char **parse_command_with_arguments(char *input);
 char *check_command_path(const char *command);
+void exit_builtin(void);
+
 
 #endif /* SHELL_H */
 
