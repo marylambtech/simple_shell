@@ -13,8 +13,8 @@ ssize_t _write(const char *str);
 void displayPrompt(int is_interactive);
 void readCommand(char *input, int is_interactive);
 void executeCommand(char *input);
-
 char **parse_command_with_arguments(char *input);
+char *check_command_path(const char *command);
 
 #endif /* SHELL_H */
 
