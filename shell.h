@@ -16,6 +16,7 @@ void executeCommand(char *input);
 char **parse_command_with_arguments(char *input);
 char *check_command_path(const char *command);
 void exit_builtin(void);
+char *get_line(void);
 
 /* Add function declarations for new built-ins */
 void env_builtin(void);
