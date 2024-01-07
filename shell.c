@@ -1,17 +1,24 @@
 #include "shell.h"
 
 /**
- * _write - Custom write function to replace printf.
+ * _write - Custom function for formatted output to stdout.
  *
- * @str: String to be written.
+ * @format: Format string.
  *
- * Return: Number of bytes written.
+ * Return: Number of characters written.
  */
-ssize_t _write(const char *str)
+ssize_t _write(const char *format, ...)
 {
-	return (write(STDOUT_FILENO, str, strlen(str)));
-}
+	va_list args;
+	ssize_t written_chars;
 
+	va_start(args, format);
+	written_chars = vprintf(format, args);
+	va_end(args);
+
+	return (written_chars);
+}
+ 
 /**
  * displayPrompt - Displays the shell prompt if running in interactive mode.
  *

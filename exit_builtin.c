@@ -1,10 +1,23 @@
 #include "shell.h"
 
 /**
- * exit_builtin - Implements the exit built-in, which exits the shell.
+ * exit_builtin - Implements the exit built-in with arguments.
+ *
+ * @args: Array of strings containing the arguments.
  */
-void exit_builtin(void)
+void exit_builtin(char **args)
 {
-	_write("Exit built-in\n");
-	exit(EXIT_SUCCESS);
+	if (args[1] != NULL)
+	{
+		int status = atoi(args[1]);
+
+		_write("Exit with status %d\n", status);
+		exit(status);
+	}
+	else
+	{
+		_write("Exit built-in\n");
+		exit(EXIT_SUCCESS);
+	}
 }
+
