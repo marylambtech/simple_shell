@@ -10,13 +10,13 @@
 ssize_t _write(const char *format, ...)
 {
 	va_list args;
-	ssize_t written_chars;
+	ssize_t n;
 
 	va_start(args, format);
-	written_chars = vprintf(format, args);
+	n = vdprintf(STDOUT_FILENO, format, args);
 	va_end(args);
 
-	return (written_chars);
+	return (n);
 }
  
 /**

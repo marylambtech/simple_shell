@@ -22,10 +22,14 @@ char *allocate_argument(char *start, int len);
 int is_delimiter(char c);
 char *allocate_argument(char *start, int len);
 void exit_builtin(char **args);
+extern char **environ;
+
 ssize_t _write(const char *format, ...);
 
 /* Add function declarations for new built-ins */
 void env_builtin(void);
+void setenv_builtin(char **args);
+void unsetenv_builtin(char **args);
 
 #endif /* SHELL_H */
 

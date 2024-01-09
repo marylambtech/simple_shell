@@ -7,17 +7,13 @@
  */
 void exit_builtin(char **args)
 {
+	int status = EXIT_SUCCESS;
+
 	if (args[1] != NULL)
 	{
-		int status = atoi(args[1]);
+		status = atoi(args[1]);
+	}
 
-		_write("Exit with status %d\n", status);
-		exit(status);
-	}
-	else
-	{
-		_write("Exit built-in\n");
-		exit(EXIT_SUCCESS);
-	}
+	_write("Exit with status %d\n", status);
+	exit(status);
 }
-
