@@ -25,6 +25,7 @@ void exit_builtin(char **args);
 extern char **environ;
 
 ssize_t _write(const char *format, ...);
+void cd_builtin(char **args);
 
 /* Add function declarations for new built-ins */
 void env_builtin(void);
