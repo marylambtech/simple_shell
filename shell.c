@@ -53,27 +53,40 @@ void readCommand(char *input, int is_interactive)
  *
  * @input: The command to be executed.
  */
-void executeCommand(char *input)
+void executeCommand(char *command)
 {
-	pid_t pid = fork();
+	pid_t child_pid;
+	int status;
 
-	if (pid == -1)
+	child_pid = fork();
+
+	if (child_pid == -1)
 	{
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
-	else if (pid == 0)
+
+	if (child_pid == 0)
 	{
-		if (execlp(input, input, NULL) == -1)
+		char *args[4];
+		args[0] = "/bin/sh";
+		args[1] = "-c";
+		args[2] = command;
+		args[3] = NULL;
+
+		if (execve("/bin/sh", args, environ) == -1)
 		{
-			perror("execlp");
-				_write("Command not found\n");
+			perror("execve");
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		wait(NULL);
+		if (waitpid(child_pid, &status, 0) == -1)
+		{
+			perror("waitpid");
+			exit(EXIT_FAILURE);
+		}
 	}
 }
 

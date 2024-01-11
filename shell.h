@@ -26,6 +26,9 @@ extern char **environ;
 
 ssize_t _write(const char *format, ...);
 void cd_builtin(char **args);
+void semicolon_handler(char *input);
+void executeCommand(char *command);
+char *trim_whitespace(char *str);
 
 /* Add function declarations for new built-ins */
 void env_builtin(void);
